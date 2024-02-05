@@ -11,7 +11,7 @@ lab:
 
 > **注意：** 要完成此练习，您需要访问 Azure 订阅以创建 Azure 资源。 如果没有 Azure 订阅，请在开始之前创建一个[免费](https://azure.microsoft.com/free/?azure-portal=true)帐户。
 
-## 准备工作
+## 开始之前
 
 要运行此练习，需要：
 
@@ -36,19 +36,19 @@ lab:
 
 1. 选择**数据库**文件夹，然后选择**新建查询**
 
-1. 在新建查询窗口中，将以下 T-SQL 复制并粘贴到其中。 执行查询以还原数据库。
+1. 在新建查询窗口中，将以下 T-SQL 复制并粘贴到其中。 确保数据库备份文件名和路径与实际备份文件匹配。 否则，命令将失败。 执行查询以还原数据库。
 
     ```sql
     RESTORE DATABASE AdventureWorksLT
-    FROM DISK = 'C:\LabFiles\AdventureWorksLT2019.bak'
+    FROM DISK = 'C:\<FolderName>\AdventureWorksLT2019.bak'
     WITH RECOVERY,
           MOVE 'AdventureWorksLT2019_Data' 
-            TO 'C:\LabFiles\AdventureWorksLT2019.mdf',
+            TO 'C:\<FolderName>\AdventureWorksLT2019.mdf',
           MOVE 'AdventureWorksLT2019_Log'
-            TO 'C:\LabFiles\AdventureWorksLT2019.ldf';
+            TO 'C:\<FolderName>\AdventureWorksLT2019.ldf';
     ```
 
-    > **注意**：确保上例中的数据库备份文件名称和路径与实际备份文件一致。 否则，命令可能会失败。
+    > **注意**：在运行 T-SQL 命令之前，请确保 SQL Server 计算机上具有轻型 [AdventureWorks](https://learn.microsoft.com/sql/samples/adventureworks-install-configure#download-backup-files) 备份文件。
 
 1. 还原完成后，应会看到一条成功消息。
 
@@ -62,7 +62,7 @@ lab:
 
     > **注意**：如果打开了**资源提供程序**详细信息侧边栏，可以将其关闭。
 
-1. 选择**注册**。
+1. 选择“注册”。
 
 ## 预配 Azure SQL 数据库
 
@@ -230,6 +230,6 @@ lab:
 
 让资源不必要地运行可能会导致额外费用。 可以在 [Azure 门户](https://portal.azure.com?azure-portal=true)中单独删除资源或删除整套资源。
 
-## 更多信息
+## 详细信息
 
 有关 Azure SQL 数据库的更多信息，请参阅[什么是 Azure SQL 数据库](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview)。
