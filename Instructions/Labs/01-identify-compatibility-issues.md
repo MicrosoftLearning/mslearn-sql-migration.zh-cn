@@ -9,13 +9,13 @@ lab:
 
 该练习大约需要 **15** 分钟。
 
-> **注意**：若要完成此练习，需要访问 Azure 订阅以创建 Azure 资源。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?azure-portal=true)。
+> **注意**：若要完成此练习，需要访问 Azure 订阅以创建 Azure 资源。 如果没有 Azure 订阅，请在开始之前创建一个[免费](https://azure.microsoft.com/free/?azure-portal=true)帐户。
 
-## 准备工作
+## 开始之前
 
 若要运行此练习，请确保在运行之前具备以下条件：
 
-- 您需要 SQL Server 2019 或更高版本，以及与特定 SQL Server 实例兼容的 [**AdventureWorksLT**](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms) 轻量级数据库。
+- 您需要 SQL Server 2019 或更高版本，以及与特定 SQL Server 实例兼容的 [**AdventureWorksLT**](https://learn.microsoft.com/sql/samples/adventureworks-install-configure#download-backup-files) 轻量级数据库。
 - 下载并安装[ Azure Data Studio](https://learn.microsoft.com/sql/azure-data-studio/download-azure-data-studio)。 如果已经安装，请进行更新，确保使用的是最新版本。
 - 对源数据库具有读取访问权限的 SQL 用户。
 
@@ -23,23 +23,23 @@ lab:
 
 1. 选择 Windows 开始按钮，然后键入 SSMS。 从列表中选择**Microsoft SQL Server Management Studio 18**。  
 
-1. 当 SSMS 打开时，请注意，**连接到服务器**对话框将使用默认实例名称预填充。 选择**连接**
+1. 当 SSMS 打开时，请注意，**连接到服务器**对话框将使用默认实例名称预填充。 选择**连接** 
 
 1. 选择**数据库**文件夹，然后选择**新建查询**
 
-1. 在新建查询窗口中，将以下 T-SQL 复制并粘贴到其中。 执行查询以还原数据库。
+1. 在新建查询窗口中，将以下 T-SQL 复制并粘贴到其中。 确保数据库备份文件名和路径与实际备份文件匹配。 如果不匹配，命令将失败。 执行查询以还原数据库。
 
     ```sql
     RESTORE DATABASE AdventureWorksLT
-    FROM DISK = 'C:\LabFiles\AdventureWorksLT2019.bak'
+    FROM DISK = 'C:\<FolderName>\AdventureWorksLT2019.bak'
     WITH RECOVERY,
           MOVE 'AdventureWorksLT2019_Data' 
-            TO 'C:\LabFiles\AdventureWorksLT2019.mdf',
+            TO 'C:\<FolderName>\AdventureWorksLT2019.mdf',
           MOVE 'AdventureWorksLT2019_Log'
-            TO 'C:\LabFiles\AdventureWorksLT2019.ldf';
+            TO 'C:\<FolderName>\AdventureWorksLT2019.ldf';
     ```
 
-    > **注意**：确保上例中的数据库备份文件名称和路径与实际备份文件一致。 否则，命令可能会失败。
+    > **注意**：在运行 T-SQL 命令之前，请确保 SQL Server 计算机上具有轻型 [AdventureWorks](https://learn.microsoft.com/sql/samples/adventureworks-install-configure#download-backup-files) 备份文件。
 
 1. 还原完成后，应会看到一条成功消息。
 
