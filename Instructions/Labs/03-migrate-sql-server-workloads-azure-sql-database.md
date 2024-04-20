@@ -22,7 +22,6 @@ lab:
 | **源服务器** | 安装在服务器上的 SQL Server 2019 或[更新版本](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)的实例。 |
 | **源数据库** | 要在 SQL Server 实例上还原的轻量级 [AdventureWorks](https://learn.microsoft.com/sql/samples/adventureworks-install-configure) 数据库。 |
 | **Azure Data Studio** | 在源数据库所在的同一服务器上安装 [Azure Data Studio](https://learn.microsoft.com/sql/azure-data-studio/download-azure-data-studio)。 如果已经安装，请进行更新，确保使用的是最新版本。 |
-| **Microsoft 数据迁移助手** | 在源数据库所在的同一服务器上安装 [Data Migration Assistant](https://www.microsoft.com/en-us/download/details.aspx?id=53595)。 |
 | **Microsoft.DataMigration** 资源提供程序 | 确保已注册订阅，以便使用 **Microsoft.DataMigration** 命名空间。 要了解如何进行资源提供程序注册，请参阅[注册资源提供程序](https://learn.microsoft.com/azure/dms/quickstart-create-data-migration-service-portal#register-the-resource-provider)。 |
 | **Microsoft Integration Runtime** | 安装 [Microsoft Integration Runtime](https://aka.ms/sql-migration-shir-download)。 |
 
@@ -92,11 +91,7 @@ lab:
 
 1. 在**计算+存储**上，选择**配置数据库**。 在**配置**页上的**服务层**下拉列表中，选择**基本**，然后选择**应用**。
 
-1. 对于**备份存储冗余**选项，请保留默认值：**异地冗余备份存储**。 选择**下一页：网络**。
-
-1. 在**网络**选项卡上，选择**下一步：安全性**，然后选择**下一步：附加设置**。
-
-1. 在**附加设置**页面上，选择**审查 + 创建**。
+1. 对于**备份存储冗余**选项，请保留默认值：**异地冗余备份存储**。 选择“查看 + 创建”  。
 
 1. 查看设置，然后选择**创建**。
 
@@ -156,31 +151,31 @@ lab:
 
 1. 在 Azure Data Studio 的扩展中启动**迁移到 Azure SQL** 向导，然后选择**迁移到 Azure SQL**。
 
-1. 在**步骤 1：用于评估的数据库**中，选择*AdventureWorks*数据库，然后选择**下一步**。
+1. 在“步骤 1：**用于评估的数据库”中，选择“AdventureWorksLT”数据库，然后选择“下一步”********。
 
 1. 在“步骤 2: **评估摘要和 SKU 建议**，等待评估完成，并查看结果。 选择**下一步**。
 
-1. 在“步骤 3: **目标平台和评估结果**，选择数据库以查看评估结果。
+1. 在“步骤 3: **目标平台和评估结果”中，选择“Azure SQL 数据库”作为目标平台******。 查看评估结果后，选择“下一步”****。
 
-    > **注意**：花一点时间查看右侧的评估结果。
+1. 在 **步骤 4：Azure SQL 目标** 上，如果帐户尚未链接，请确保通过选择“链接帐户”链接添加一个帐户。**** 然后，选择 Azure 帐户、Microsoft Entra 租户、订阅、位置、资源组、Azure SQL 数据库服务器以及 Azure SQL 数据库的凭据。
 
-1. 在 **步骤 3：目标平台和评估结果** 页顶部，选择“Azure SQL 数据库”作为 **Azure SQL** 目标。****
-
-1. 在 **步骤 4：Azure SQL 目标** 上，如果帐户尚未链接，请确保通过选择“链接帐户”链接添加一个帐户。**** 然后，选择 Azure 帐户、AD 租户、订阅、位置、资源组、Azure SQL 数据库服务器和 Azure SQL 数据库的凭据。
-
-1. 选择**连接**，然后选择 *AdventureWorks* 数据库作为**目标数据库**。 选择**下一步**。
+1. 选择“连接”，然后选择“AdventureWorksLT”数据库作为目标数据库**********。 选择**下一步**。
 
 1. 在 **步骤 5：Azure 数据库迁移服务** 上，选择“新建”链接，以使用向导创建新的 Azure 数据库迁移服务。**** 按照向导提供的步骤设置新的自托管集成运行时。 如果以前创建过一个，则可以重复使用。
 
-1. 在 **步骤 6：数据源配置** 上，输入凭据以从自承载集成运行时连接到 SQL Server 实例。 
+1. 在 **步骤 6：数据源配置** 上，输入凭据以从自承载集成运行时连接到 SQL Server 实例。
 
-1. 选择要从源迁移到目标的所有表，然后选中“迁移缺少的架构”选项。****
+1. 针对 AdventureWorksLT 数据库，选择“编辑”******。 
+
+1. 选中“将架构迁移到目标”选项，并验证是否选择了“目标上缺少内容”中的所有表********。 选择**更新**。
 
 1. 选择**运行验证**。
 
     ![Azure Data Studio 的 Azure 迁移扩展上运行验证步骤的截图。](../media/3-run-validation.png) 
 
-1. 验证完成后，选择**下一步**。
+1. 验证完成后，选择“完成”****。
+
+1. 选择**下一步**。
 
 1. 在: **步骤 7：摘要** 上，选择“开始迁移”。****
 
